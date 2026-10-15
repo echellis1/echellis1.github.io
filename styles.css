@@ -1,7 +1,7 @@
 :root {
     --ink: #161A1D;
     --muted: #5B6470;
-    --bg: #F3F5F7;
+    --bg: #FFFFFF;
     --panel: #FFFFFF;
     --border: #DCE1E6;
     --tally: #E8433A;
@@ -36,6 +36,9 @@ body {
     background: var(--panel);
     border-bottom: 3px solid var(--ink);
     padding: 32px 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .brand-row {
@@ -120,7 +123,7 @@ nav .sep {
 
 /* ---------- Hero / chyron (homepage only) ---------- */
 .hero {
-    margin: 0 0 40px;
+    margin: 32px 0 40px;
 }
 
 .tally-inline {
@@ -132,8 +135,7 @@ nav .sep {
 }
 
 .chyron {
-    background: var(--ink);
-    border-left: 6px solid var(--tally);
+    background: var(--link);
     padding: 18px 24px;
     color: #fff;
 }
@@ -150,7 +152,7 @@ nav .sep {
 .chyron .role {
     margin: 0;
     font-size: 15px;
-    color: #C9CED4;
+    color: #E3ECF5;
     font-family: var(--font-mono);
     letter-spacing: 0.02em;
 }
@@ -176,7 +178,7 @@ main {
     margin-top: 44px;
     margin-bottom: 16px;
     padding-left: 12px;
-    border-left: 3px solid var(--tally);
+    border-left: 3px solid var(--link);
 }
 
 .page p {
@@ -244,4 +246,161 @@ main {
     .site-header { padding: 24px 0 16px; }
     .chyron h1 { font-size: 28px; }
     .brand-row { flex-direction: column; align-items: flex-start; }
+}
+
+/* Featured posts */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page .post-list li {
+    padding: 0;
+    margin: 0 0 12px;
+}
+
+.post-card {
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+}
+
+.page a.post-card {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.page a.post-card:hover {
+    border-color: var(--link);
+}
+
+.post-card .post-title {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--link);
+}
+
+.post-card .post-date,
+.post-meta {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0 0 2px;
+}
+
+.post-card .post-title {
+    margin-bottom: 6px;
+}
+
+.page h1 + .post-image,
+.post-meta + h1 {
+    margin-top: 0;
+}
+
+.post-card .post-summary {
+    display: block;
+}
+
+.page .post-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.page .post-grid li {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-grid .post-card {
+    height: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 420px) {
+    .page .post-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.site-footer .social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 14px;
+}
+
+.site-footer .social a {
+    display: block;
+    line-height: 0;
+    opacity: 0.85;
+}
+
+.site-footer .social a:hover {
+    opacity: 1;
+}
+
+.site-header .social {
+    display: flex;
+    gap: 14px;
+    margin: 10px 0 12px;
+}
+
+.site-header .social a {
+    display: block;
+    line-height: 0;
+    opacity: 0.85;
+}
+
+.site-header .social a:hover {
+    opacity: 1;
+}
+
+/* Post images */
+.post-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.post-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 8px 0 20px;
+}
+
+#post-content .post-meta {
+    margin-top: 32px;
+}
+
+#post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
 }
