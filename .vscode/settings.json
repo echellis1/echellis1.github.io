@@ -1,0 +1,16 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "search.exclude": {
+    "output/**": true,
+    ".venv/**": true
+  },
+  "files.associations": {
+    "themes/**/templates/*.html": "jinja-html"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  }
+}

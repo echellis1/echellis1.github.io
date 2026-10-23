@@ -1,4 +1,6 @@
-# Skills
+Title: Skills
+Slug: skills
+Description: Technical skills and certifications — vMix, Dante (Levels 1–3), NDI, TelVue, Yamaha consoles, Q-SYS, Extron, and network systems.
 
 ## Top Skills
 

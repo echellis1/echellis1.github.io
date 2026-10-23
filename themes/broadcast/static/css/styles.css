@@ -404,3 +404,31 @@ main {
     height: auto;
     border-radius: 4px;
 }
+
+/* ---------- Added in the Pelican conversion ---------- */
+
+/* Current page in the nav */
+nav a[aria-current="page"] {
+    color: var(--ink);
+    border-color: var(--tally);
+}
+
+/* Featured Posts block on the Home page */
+#featured-posts .post-grid {
+    margin-bottom: 12px;
+}
+
+/* Two-column post grid on mid-size screens */
+@media (max-width: 680px) and (min-width: 421px) {
+    .page .post-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Let the nav wrap on phones instead of running off the right edge */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    row-gap: 8px;
+}

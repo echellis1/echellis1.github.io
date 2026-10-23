@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "_post_card.html" import post_card %}
+{% block title %}Featured — {{ SITENAME }}{% endblock %}
+{% block description %}Projects and write-ups from Eric Chellis on live broadcast production, IP media, and AV systems.{% endblock %}
+{% block path %}featured.html{% endblock %}
+{% block content %}
+<h1>Featured</h1>
+{%- if articles %}
+<ul class="post-grid">
+{%- for article in articles %}
+{{ post_card(article) }}
+{%- endfor %}
+</ul>
+{%- else %}
+<p>No featured posts yet.</p>
+{%- endif %}
+{% endblock %}

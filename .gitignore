@@ -1,0 +1,9 @@
+# Build output (GitHub Actions builds the live site from source)
+output/
+# Python virtual environment and caches
+.venv/
+__pycache__/
+*.pyc
+# Editor / OS junk
+.DS_Store
+*.swp

@@ -1,0 +1,9 @@
+{#- One post card: cover image, date, title, summary. Used on Home and Featured. -#}
+{% macro post_card(article) -%}
+<li><a class="post-card" href="{{ SITEURL }}/{{ article.url }}">
+{%- if article.cover %}<img class="post-card-image" src="{{ SITEURL }}/{{ article.cover }}" alt="{{ article.title | striptags }}" loading="lazy">{% endif -%}
+<span class="post-date">{{ article.locale_date }}</span>
+<span class="post-title">{{ article.title }}</span>
+{%- if article.metadata.summary %}<span class="post-summary">{{ article.metadata.summary | striptags }}</span>{% endif -%}
+</a></li>
+{%- endmacro %}

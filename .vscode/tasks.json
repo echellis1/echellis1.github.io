@@ -1,0 +1,49 @@
+{
+  // Run these from Terminal > Run Task... (or Ctrl+Shift+B for the default build).
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup: create .venv and install Pelican",
+      "type": "shell",
+      "command": "python3 -m venv .venv && .venv/bin/pip install -r requirements.txt",
+      "windows": {
+        "command": "py -m venv .venv; .venv\\Scripts\\pip install -r requirements.txt"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pelican: Preview with live reload",
+      "detail": "Builds the site, serves it at http://localhost:8000, and rebuilds on every save",
+      "type": "shell",
+      "command": ".venv/bin/pelican --autoreload --listen",
+      "windows": { "command": ".venv\\Scripts\\pelican --autoreload --listen" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "Pelican: Build once",
+      "type": "shell",
+      "command": ".venv/bin/pelican content",
+      "windows": { "command": ".venv\\Scripts\\pelican content" },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Pelican: Build like the live site",
+      "detail": "Uses publishconf.py, the same settings GitHub Actions uses",
+      "type": "shell",
+      "command": ".venv/bin/pelican content -s publishconf.py",
+      "windows": { "command": ".venv\\Scripts\\pelican content -s publishconf.py" },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "New post (today's date)",
+      "detail": "Creates content/posts/<yyyymmdd>/index.md and opens it",
+      "type": "shell",
+      "command": "d=$(date +%Y%m%d); f=content/posts/$d/index.md; mkdir -p content/posts/$d; [ -f $f ] || printf -- '---\\nTitle: Untitled post\\nDate: %s\\nSummary: \\nImage: \\nStatus: draft\\n---\\n\\nWrite your post here. Put photos in this folder and link them like ![caption](photo.jpg).\\n' $(date +%F) > $f; code $f",
+      "problemMatcher": []
+    }
+  ]
+}

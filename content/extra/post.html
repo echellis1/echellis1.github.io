@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Redirecting…</title>
+<script>
+  // Old links looked like post.html?post=20250925. Posts now live at posts/20250925/.
+  var id = new URLSearchParams(location.search).get('post') || '';
+  location.replace(/^\d{8}$/.test(id) ? 'posts/' + id + '/' : 'featured.html');
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=featured.html"></noscript>
+</head>
+<body><p><a href="featured.html">Go to posts</a></p></body>
+</html>

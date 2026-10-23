@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{#- Each page template fills in these blocks:
+      title        browser tab / search result title
+      description  one-sentence summary for search results and link previews
+      path         this page's address relative to the site root
+      share_image  picture for LinkedIn/Facebook previews (optional) #}
+<title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}">
+<meta name="author" content="{{ AUTHOR }}">
+{%- set share_img = (self.share_image() | trim) or SOCIAL_IMAGE %}
+{%- if SITEURL %}
+<link rel="canonical" href="{{ SITEURL }}/{% block path %}{% endblock %}">
+<meta property="og:url" content="{{ SITEURL }}/{{ self.path() | trim }}">
+{%- endif %}
+<meta property="og:site_name" content="{{ SITENAME }}">
+<meta property="og:title" content="{{ self.title() | trim }}">
+<meta property="og:description" content="{{ self.description() | trim }}">
+<meta property="og:type" content="{% block og_type %}website{% endblock %}">
+{%- if share_img %}
+<meta property="og:image" content="{{ SITEURL }}/{{ share_img }}">
+<meta name="twitter:card" content="summary_large_image">
+{%- else %}
+<meta name="twitter:card" content="summary">
+{%- endif %}
+{%- if false %}{% block share_image %}{% endblock %}{% endif %}
+<link rel="icon" href="{{ SITEURL }}/theme/images/favicon.svg" type="image/svg+xml">
+{%- if FEED_ALL_ATOM %}
+<link rel="alternate" type="application/atom+xml" title="{{ SITENAME }} — Posts" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">
+{%- endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/styles.css?v={{ CSS_VERSION }}">
+</head>
+<body>
+{%- macro social_links(size) %}
+<div class="social">
+{%- for name, url, icon in SOCIAL %}<a href="{{ url }}" aria-label="{{ name }}"><img src="{{ SITEURL }}/theme/images/{{ icon }}" alt="{{ name }}" width="{{ size }}" height="{{ size }}"></a>{% endfor -%}
+</div>
+{%- endmacro %}
+<header class="site-header"><div class="wrap">
+<div class="brand-row">
+<a class="site-title" href="{{ SITEURL }}/index.html">{{ SITENAME }} — {{ SITE_TAGLINE }}</a>
+{%- if SHOW_TALLY %}
+<span class="tally"><span class="dot"></span>ON AIR</span>
+{%- endif %}
+</div>
+{{ social_links(24) }}
+<nav>
+{%- for label, link in NAV -%}
+{%- if not loop.first %}<span class="sep">/</span>{% endif -%}
+<a href="{{ SITEURL }}/{{ link }}"{% if output_file == link or (link == 'featured.html' and output_file.startswith('posts/')) %} aria-current="page"{% endif %}>{{ label }}</a>
+{%- endfor -%}
+</nav>
+</div></header>
+<main class="wrap"><article class="page">
+{%- block content %}{% endblock -%}
+</article></main>
+<footer class="site-footer"><div class="wrap">
+{{ social_links(28) }}
+<p>&copy; {{ AUTHOR }}</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title | striptags }} — {{ SITENAME }}{% endblock %}
+{% block description %}{{ (article.metadata.summary or article.summary) | striptags | truncate(200) }}{% endblock %}
+{% block path %}{{ article.url }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block share_image %}{{ article.cover }}{% endblock %}
+{% block content %}
+<div id="post-content">
+<span class="post-meta"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span>
+<h1>{{ article.title }}</h1>
+{%- if article.cover %}
+<img class="post-image" src="{{ SITEURL }}/{{ article.cover }}" alt="{{ article.title | striptags }}">
+{%- endif %}
+{{ article.content }}
+</div>
+<p><a href="{{ SITEURL }}/featured.html">&larr; All posts</a></p>
+{% endblock %}

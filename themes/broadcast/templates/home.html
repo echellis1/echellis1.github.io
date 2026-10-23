@@ -1,0 +1,22 @@
+{% extends "page.html" %}
+{% from "_post_card.html" import post_card %}
+{% block title %}{{ SITENAME }} — {{ SITE_TAGLINE }}{% endblock %}
+{% block path %}{% endblock %}
+{% block content %}
+{#- The newest posts are dropped in where home.md has <!-- FEATURED POSTS --> -#}
+{% set featured -%}
+{%- if articles %}
+<section id="featured-posts"><h2>Featured Posts</h2>
+<ul class="post-grid">
+{%- for article in articles[:HOME_POST_COUNT] %}
+{{ post_card(article) }}
+{%- endfor %}
+</ul>
+{%- if articles | length > HOME_POST_COUNT %}
+<p><a href="{{ SITEURL }}/featured.html">All posts →</a></p>
+{%- endif %}
+</section>
+{%- endif %}
+{%- endset %}
+{{ page.content | replace('<!-- FEATURED POSTS -->', featured) }}
+{% endblock %}
